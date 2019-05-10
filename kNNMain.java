@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 
-
 public class kNNMain{
 
   public static void main(String... args) throws FileNotFoundException{
@@ -15,19 +14,32 @@ public class kNNMain{
     
     List<DataPoint> myList = DataSet.readDataSet(PATH_TO_DATA);
     
-    DataPoint dp = myList.get(59);
+    DataPoint dp1 = myList.get(0);
+    DataPoint dp2 = myList.get(1);
     
-    double[] dpx = dp.getX();
+    double[] dpx = dp1.getX();
     
-    String printableX = Arrays.toString(dp.getX());
+    String printableX = Arrays.toString(dpx);
     
     System.out.println(printableX);
-    //System.out.println(dp);
-
-
+    System.out.println(dp1.getLabel());
+    System.out.println(dp1.getLabelAsDouble());
 
     //TASK 2:Use the DataSet class to split the fullDataSet into Training and Held Out Test Dataset
-
+    
+    List<DataPoint> test = DataSet.getTestSet(myList, 0.2);
+    List<DataPoint> train = DataSet.getTrainingSet(myList, 0.8);
+    
+//    DataSet.printDataSet(test);
+//    System.out.println();
+//    DataSet.printDataSet(train);
+//    System.out.println();
+//    System.out.println("myList: " + DataSet.getLabels(myList));
+//    DataSet.printLabelFrequencies(myList);
+//    System.out.println("test:");
+//    DataSet.printLabelFrequencies(test);
+//    System.out.println("train:");
+//    DataSet.printLabelFrequencies(train);
 
     // TASK 3: Use the DataSet class methods to plot the 2D data (binary and multi-class)
 
@@ -35,7 +47,9 @@ public class kNNMain{
 
     // TASK 4: write a new method in DataSet.java which takes as arguments to DataPoint objects,
     // and returns the Euclidean distance between those two points (as a double)
-
+    
+    double dist = DataSet.distanceEuclid(dp1, dp2);
+    System.out.println(dist);
 
 
     // TASK 5: Use the KNNClassifier class to determine the k nearest neighbors to a given DataPoint,

@@ -1,19 +1,14 @@
 public class DataPoint {
 
-  public double[]
-      x; // array to hold the measured values of this data point (the "features" of this data point)
-  public String
-      label; // String value holding the "class", or "label" of this data point (e.g. "malignant" vs
+  public double[] x; // array to hold the measured values of this data point (the "features" of this data point)
+  public String label; // String value holding the "class", or "label" of this data point (e.g. "malignant" vs
   // "benign")
   public double labelAsDouble; // need a place to store whether this data point is a 1 or 0
-  public String
-      testOrTrain; // a place to store if this data point is part of the training set or the test
+  public String testOrTrain; // a place to store if this data point is part of the training set or the test
   // set
-  public String
-      predictedLabel; // if this data point is part of the test set, this is where we store our
+  public String predictedLabel; // if this data point is part of the test set, this is where we store our
   // prediction of its "label" or "class"
-  public double
-      predictedProb; // if this data point is part of the test set, this is where we store the
+  public double predictedProb; // if this data point is part of the test set, this is where we store the
   // probability with which we make our prediction
 
   /////////////////////////////////////////////////////////////////
