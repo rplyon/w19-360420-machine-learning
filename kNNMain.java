@@ -21,9 +21,9 @@ public class kNNMain{
     
     String printableX = Arrays.toString(dpx);
     
-    System.out.println(printableX);
-    System.out.println(dp1.getLabel());
-    System.out.println(dp1.getLabelAsDouble());
+//    System.out.println(printableX);
+//    System.out.println(dp1.getLabel());
+//    System.out.println(dp1.getLabelAsDouble());
 
     //TASK 2:Use the DataSet class to split the fullDataSet into Training and Held Out Test Dataset
     
@@ -49,18 +49,31 @@ public class kNNMain{
     // and returns the Euclidean distance between those two points (as a double)
     
     double dist = DataSet.distanceEuclid(dp1, dp2);
-    System.out.println(dist);
+//    System.out.println(dist);
 
 
     // TASK 5: Use the KNNClassifier class to determine the k nearest neighbors to a given DataPoint,
     // and make a print a predicted target label
-
-
+    
+    KNNClassifier object = new KNNClassifier(5);
+    DataPoint[] kNearest = object.getNearestNeighbors(myList, dp1);
+    String myLabel = object.predict(myList, kNearest[0]);
+//    System.out.println(myLabel);
 
     // TASK 6: loop over the datapoints in the held out test set, and make predictions for Each
     // point based on nearest neighbors in training set. Calculate accuracy of model.
-
-
+    System.out.println(kNearest.length);
+    int count = 0;
+    for(int i = 0; i < test.size(); i++){
+      DataPoint wht = test.get(i);
+      String predicted = object.predict(train, wht);
+      if (predicted.equals(wht.getLabel())){
+        count ++; 
+      }
+    }
+    System.out.println(count); 
+    System.out.println((double) count/test.size()*100);
+    
   }
 
   public static double mean(double[] arr){
