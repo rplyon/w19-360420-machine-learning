@@ -73,7 +73,8 @@ public class kNNMain{
     /////////////////
     //1000 times/////
     /////////////////
-    KNNClassifier object = new KNNClassifier(5);
+    int k = 25;
+    KNNClassifier object = new KNNClassifier(k);
 //    String predicted;
     int counter = 0;
     double[] sum = new double[1000];
@@ -82,7 +83,7 @@ public class kNNMain{
     int truePos = 0;
     int falsePos = 0;
     int falseNeg = 0;
-    
+    System.out.println("k is " + k);
     for (int i = 0; i < 1000; i++)
     {
     List<DataPoint> myList = DataSet.readDataSet(PATH_TO_DATA);
@@ -136,7 +137,7 @@ public class kNNMain{
     System.out.println("Mean recall: " + mean(recall) + "\tSD recall " + standardDeviation(recall));
     
     List<DataPoint> tList = DataSet.readDataSet(PATH_TO_DATA);
-    DataSet.printLabelFrequencies(tList);
+    //DataSet.printLabelFrequencies(tList);
   }//main
 
   public static double mean(double[] arr){
