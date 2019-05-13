@@ -1,5 +1,5 @@
 # Report: Error Analysis
-## 360-420-w2019 - Section 
+## 360-420-w2019 - Section 2
 ## Jeremy Lackmann-Mincoff and Lyon Belyansky
 
 ## Distributions of Model Accuracy
@@ -13,3 +13,5 @@ A sensible baseline could be to predict that all patients have a malignant tumor
 A False Positive is a prediction of a malignant tumor whereas it is actually benign.
 A False Negative is a prediction of a bening tumor whereas it is acutally malignant. 
 It is clear that to make a False Negative is a much worse mistake in a medical context than to make a False Positive.
+
+Extending the analysis to keep track of Recall and Precisison, we get a mean Precision of 95.3% with an SD of 7.21*10^(-4) and a mean Recall of 95.6% with an SD of 4.65*10(-4).

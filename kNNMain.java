@@ -77,6 +77,12 @@ public class kNNMain{
 //    String predicted;
     int counter = 0;
     double[] sum = new double[1000];
+    double[] precision = new double[1000];
+    double[] recall = new double[1000];
+    int truePos = 0;
+    int falsePos = 0;
+    int falseNeg = 0;
+    
     for (int i = 0; i < 1000; i++)
     {
     List<DataPoint> myList = DataSet.readDataSet(PATH_TO_DATA);
@@ -90,24 +96,48 @@ public class kNNMain{
       {
         DataPoint myDP = test.get(e);
         String predicted = object.predict(train, myDP);
-        if (predicted.equals(myDP.getLabel()))
+        if (predicted.equals(myDP.getLabel())) //predicted right
         {
           counter ++; 
-        }
-      }
+          if (predicted.equals("malignant"))
+          {
+            truePos ++;
+          }
+        } //big if
+        else //predicted wrong
+        {
+         if (predicted.equals("malignant"))
+         {
+           falseNeg ++;
+         }
+         else //if (predicted.equals("benign"))
+         {
+           falsePos ++;
+         }  
+        }//big else
+      }// forloop
+      precision[i] = ((double) (truePos))/(truePos+falsePos);
+      recall[i] = ((double) (truePos))/(truePos+falseNeg);
+      
       double dCounter = (double) (counter);
       double dSize = (double) (test.size());
       double accuracy = (dCounter/dSize) *100;
       sum[i] = accuracy;
       //System.out.println(sum[i]);
       counter = 0;
-    }
+      truePos = 0;
+      falsePos = 0;
+      falseNeg = 0;
+    }//big forloop
     double myMean = mean(sum);
     double mySD = standardDeviation(sum);
     System.out.println("Mean: " + myMean + "\tSD " + mySD);
+    System.out.println("Mean precision: " + mean(precision) + "\tSD precision " + standardDeviation(precision));
+    System.out.println("Mean recall: " + mean(recall) + "\tSD recall " + standardDeviation(recall));
+    
     List<DataPoint> tList = DataSet.readDataSet(PATH_TO_DATA);
     DataSet.printLabelFrequencies(tList);
-  }
+  }//main
 
   public static double mean(double[] arr){
     /*
